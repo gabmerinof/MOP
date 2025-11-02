@@ -55,7 +55,7 @@ PORT=3000
 NODE_ENV=development
 ```
 
-## Script creación de tablas Postgesql
+## Script creación de tablas Postgresql
 ```sql
   -- Creación de las extensiones geoferenciales
   CREATE EXTENSION postgis;
@@ -105,7 +105,7 @@ NODE_ENV=development
 - `POST /auth/register` - Registrar usuario
 - `POST /auth/login` - Iniciar sesión
 
-### Puntos Georreferenciados
+### Puntos GeoReferenciados
 - `GET /points` - Listar puntos (con filtros opcionales)
 - `GET /points/:geoPointId` - Obtener punto por ID
 - `POST /points` - Crear punto (requiere autenticación)
@@ -117,7 +117,7 @@ NODE_ENV=development
 - `GET /points?lat=40.7128&long=-74.0060&radius=10` - Puntos en 10km de radio
 - `GET /points?type=accidente` - Filtrar por tipo
 
-## Estructura de Arquitectura
+## Estructura de la Arquitectura
 ```text
 MOP/
 ├── MOP/
@@ -137,7 +137,7 @@ MOP/
 │   └── tsconfig.json
 ```
 
-## Ejemplos Autenticación (Postman)
+## Ejemplos consunmo EndPoints (Postman)
 ### Registrar usuario
 <img width="651" height="656" alt="image" src="https://github.com/user-attachments/assets/4d187e95-229f-4e35-b1b5-eb4d5bbc569f" />
 
