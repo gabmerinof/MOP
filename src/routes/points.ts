@@ -1,0 +1,16 @@
+import { Router } from 'express';
+import { PointsController } from '../controllers/pointController';
+import { auth } from '../middleware/auth';
+import { validateGeoPoint, validateProximityFilter } from '../middleware/validation';
+
+const router = Router();
+const pointsController = new PointsController();
+
+router.get('/', auth, validateProximityFilter, pointsController.getPoints);
+router.get('/:geoPointId', auth, pointsController.getPointById);
+router.post('/', auth, validateGeoPoint, pointsController.createPoint);
+router.put('/:geoPointId', auth, validateGeoPoint, pointsController.updatePoint);
+router.delete('/:geoPointId', auth, pointsController.deletePoint);
+router.get('/user/my-points/:userid', auth, pointsController.getUserPoints);
+
+export default router;
