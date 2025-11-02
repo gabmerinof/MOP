@@ -137,7 +137,7 @@ MOP/
 │   └── tsconfig.json
 ```
 
-## Ejemplos consunmo EndPoints (Postman)
+## Ejemplos consumo EndPoints (Postman)
 ### Registrar usuario
 <img width="651" height="656" alt="image" src="https://github.com/user-attachments/assets/4d187e95-229f-4e35-b1b5-eb4d5bbc569f" />
 
