@@ -1,14 +1,14 @@
-# API de Gestión de Puntos de Georreferencia
+# API de Gestión de Puntos de GeoReferencia
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
-API RESTful para gestionar puntos de georreferencia en una aplicación de tráfico.
+API RESTful para gestionar puntos de georeferencia en una aplicación de tráfico.
 
 ## Características
 
 - ✅ Registro y autenticación de usuarios
-- ✅ CRUD completo de puntos georreferenciados
+- ✅ CRUD completo de puntos georeferenciados
 - ✅ Filtrado por proximidad usando PostGIS
 - ✅ Validación de datos y manejo de errores
 - ✅ Autenticación JWT
@@ -36,6 +36,23 @@ cd MOP
 
 npm install
 npm run dev
+```
+## Modificar archivo .env
+```text
+# Database Configuration
+DB_HOST=postgresql-traffic.xxxxx.net
+DB_PORT=5432
+DB_NAME=xxxx_mop
+DB_USER=xxxxx
+DB_PASSWORD=xxxxx
+
+# JWT Configuration
+JWT_SECRET=a1b2c3d4e5f6123450abcdef0987654321
+JWT_EXPIRES_IN=24
+
+# Server Configuration
+PORT=3000
+NODE_ENV=development
 ```
 
 ## Script creación de tablas Postgesql
@@ -112,12 +129,14 @@ MOP/
 │   │   ├── repositories/   # Acceso a datos
 │   │   ├── routes/         # Definición de rutas
 │   │   ├── services/       # Lógica de negocio
-│   │   ├── types/         # Interfaces TypeScript
+│   │   ├── types/          # Interfaces TypeScript
 │   │   └── app.ts          # Punto de entrada
+│   ├── .env
+│   ├── environment.d.ts
 │   ├── package.json
 │   └── tsconfig.json
-└── firebase.json
 ```
+
 ## Ejemplos Autenticación (Postman)
 ### Registrar usuario
 <img width="651" height="656" alt="image" src="https://github.com/user-attachments/assets/4d187e95-229f-4e35-b1b5-eb4d5bbc569f" />
@@ -125,31 +144,31 @@ MOP/
 ### Obtener token
 <img width="816" height="803" alt="image" src="https://github.com/user-attachments/assets/84dbce98-0fe1-43fb-ad19-7f2a3158dc96" />
 
-## Obtener un punto georeferncial
+## Obtener un punto GeoReferencial
 * Auth Type: se elige Bearer Tokem
-* Copiar el token del endpoint del login y se le asigna en la caja de Token en Postman
+* Copiar el token del endpoint de login y se le asigna en la caja de Token en Postman
 <img width="837" height="925" alt="image" src="https://github.com/user-attachments/assets/315b2901-94b1-439a-ae95-67d3e7ed3c29" />
 
-## Creación de un punto georeferncial
+## Creación de un punto GeoReferencial
 * Auth Type: se elige Bearer Tokem
-* Copiar el token del endpoint del login y se le asigna en la caja de Token en Postman
+* Copiar el token del endpoint de login y se le asigna en la caja de Token en Postman
 <img width="700" height="925" alt="image" src="https://github.com/user-attachments/assets/29923851-fe2a-4a6a-80df-a350d1a729c1" />
 
-## Actualizar un punto georeferncial
+## Actualizar un punto GeoReferencial
 * Auth Type: se elige Bearer Tokem
-* Copiar el token del endpoint del login y se le asigna en la caja de Token en Postman
+* Copiar el token del endpoint de login y se le asigna en la caja de Token en Postman
 * Agregar el id a actualizar en la URL
 <img width="691" height="907" alt="image" src="https://github.com/user-attachments/assets/4f569f8f-860a-4700-9bdb-6f66179b63c9" />
 
-## Eliminar un punto georeferncial
+## Eliminar un punto GeoReferencial
 * Auth Type: se elige Bearer Tokem
 * Copiar el token del endpoint del login y se le asigna en la caja de Token en Postman
-* Agregar el id a eliminar en la URL
+* Agregar el Id a eliminar en la URL
 <img width="668" height="640" alt="image" src="https://github.com/user-attachments/assets/478501fb-b603-4247-9f3a-72b75d5e8a00" />
 
-## Ver todos mis puntos georefernciales
+## Ver todos mis puntos GeoReferenciales
 * Auth Type: se elige Bearer Tokem
-* Copiar el token del endpoint del login y se le asigna en la caja de Token en Postman
+* Copiar el token del endpoint de login y se le asigna en la caja de Token en Postman
 * Agregar el Id del usuario en la URL
 <img width="832" height="922" alt="image" src="https://github.com/user-attachments/assets/8f10f482-a1eb-4af5-a48e-1ba70ec728e3" />
 
@@ -169,13 +188,13 @@ npm run build
 
 Problemas de autenticación
 * Verificar que el token JWT sea válido
-* Confirmar que el usuario exista el usuario de la base de datos postgres
-* Confirmar si la base de datos postgres está alojada en cloud o on-premise y luego cambiar el enviroment del proyecto (.env), ejemplo:
+* Confirmar que el usuario exista en la base de datos postgres
+* Confirmar si la base de datos postgres es on-premise o cloud y luego cambiar el environment del proyecto (.env), ejemplo:
   ```text
     # Database Configuration
-    DB_HOST=postgresql-traffic.alwaysdata.net
+    DB_HOST=postgresql-traffic.xxxxx.net
     DB_PORT=5432
-    DB_NAME=traffic_xxxxx
+    DB_NAME=xxxx_mop
     DB_USER=xxxxxxxxx
     DB_PASSWORD=xxxxxxxxx
   ```
