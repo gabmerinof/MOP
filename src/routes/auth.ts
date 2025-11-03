@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { AuthController } from '../controllers/authController';
-import { validateRegister, validateLogin } from '../middleware/validation';
+import { container } from "../inversify.config";
+import { validateLogin, validateRegister } from '../middleware/validation';
+import { TYPES } from '../types/types';
 
 const router = Router();
-const authController = new AuthController();
+const authController = container.get<AuthController>(TYPES.AuthController);
 
 router.post('/register', validateRegister, authController.register);
 router.post('/login', validateLogin, authController.login);

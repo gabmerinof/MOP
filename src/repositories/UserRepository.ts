@@ -1,7 +1,9 @@
 import { IUserRepository } from './interfaces/IUserRepository';
 import { IUser, IUserCreate, UserResponse } from '../types';
 import { User } from '../models/User';
+import { injectable } from 'inversify';
 
+@injectable()
 export class UserRepository implements IUserRepository {
     async create(userData: IUserCreate): Promise<UserResponse> {
         const user = await User.create(userData);

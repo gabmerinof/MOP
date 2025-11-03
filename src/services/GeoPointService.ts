@@ -1,13 +1,14 @@
-import { IGeoPointService } from './interfaces/IGeoPointService';
-import { IGeoPoint, IGeoPointCreate, IGeoPointUpdate, ProximityFilter } from '../types';
+import { inject, injectable } from 'inversify';
 import { IGeoPointRepository } from '../repositories/interfaces/IGeoPointRepository';
-import { GeoPointRepository } from '../repositories/GeoPointRepository';
+import { IGeoPoint, IGeoPointCreate, IGeoPointUpdate, ProximityFilter } from '../types';
+import { TYPES } from '../types/types';
+import { IGeoPointService } from './interfaces/IGeoPointService';
 
+@injectable()
 export class GeoPointService implements IGeoPointService {
-    private geoPointRepository: IGeoPointRepository;
 
-    constructor() {
-        this.geoPointRepository = new GeoPointRepository();
+    constructor(@inject(TYPES.GeoPointRepository) private readonly geoPointRepository: IGeoPointRepository) {
+
     }
 
     async createPoint(pointData: IGeoPointCreate): Promise<IGeoPoint> {

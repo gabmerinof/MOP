@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
+import { inject, injectable } from 'inversify';
 import { AuthService } from '../services/AuthService';
+import { TYPES } from '../types/types';
 
+@injectable()
 export class AuthController {
-    private authService: AuthService;
 
-    constructor() {
-        this.authService = new AuthService();
+    constructor(@inject(TYPES.AuthService) private readonly authService: AuthService) {
     }
 
     getAll = async (req: Request, res: Response): Promise<void> => {
