@@ -1,7 +1,7 @@
-import { IUserRepository } from './interfaces/IUserRepository';
 import { IUser, IUserCreate, UserResponse } from '../types';
 import { User } from '../models/User';
 import { injectable } from 'inversify';
+import { IUserRepository } from './interfaces';
 
 @injectable()
 export class UserRepository implements IUserRepository {

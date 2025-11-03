@@ -1,4 +1,11 @@
+import { IUser, IUserCreate, LoginCredentials, AuthResponse } from '../../types';
 import { IGeoPoint, IGeoPointCreate, IGeoPointUpdate, ProximityFilter } from '../../types';
+
+export interface IAuthService {
+    register(userData: IUserCreate): Promise<Omit<IUser, 'password'>>;
+    login(credentials: LoginCredentials): Promise<AuthResponse>;
+    validateToken(token: string): Promise<IUser>;
+}
 
 export interface IGeoPointService {
     createPoint(pointData: IGeoPointCreate, userId: string): Promise<IGeoPoint>;

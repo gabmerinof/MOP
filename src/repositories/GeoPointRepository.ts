@@ -1,10 +1,10 @@
-import { IGeoPointRepository } from './interfaces/IGeoPointRepository';
 import { IGeoPoint, IGeoPointCreate, IGeoPointUpdate, ProximityFilter } from '../types';
 import { User } from '../models/User';
 import { GeoPoint } from '../models/GeoPoint';
 import { QueryTypes } from 'sequelize';
 import sequelize from '../config/database';
 import { injectable } from 'inversify';
+import { IGeoPointRepository } from './interfaces';
 
 @injectable()
 export class GeoPointRepository implements IGeoPointRepository {

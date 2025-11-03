@@ -1,9 +1,9 @@
 import * as jwt from 'jsonwebtoken';
-import { IUserRepository } from '../repositories/interfaces/IUserRepository';
 import { AuthResponse, IUser, IUserCreate, LoginCredentials } from '../types';
-import { IAuthService } from './interfaces/IAuthService';
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../types/types';
+import { IUserRepository } from '../repositories/interfaces';
+import { IAuthService } from './interfaces';
 
 @injectable()
 export class AuthService implements IAuthService {

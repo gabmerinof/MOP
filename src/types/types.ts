@@ -1,8 +1,8 @@
 export const TYPES = {
     AuthController: Symbol.for("AuthController"),
-    AuthService: Symbol.for("AuthService"),
-    UserRepository: Symbol.for("UserRepository"),
+    AuthService: Symbol.for("IAuthService"),
+    UserRepository: Symbol.for("IUserRepository"),
     PointController: Symbol.for("PointController"),
-    GeoPointService: Symbol.for("GeoPointService"),
-    GeoPointRepository: Symbol.for("GeoPointRepository")
+    GeoPointService: Symbol.for("IGeoPointService"),
+    GeoPointRepository: Symbol.for("IGeoPointRepository")
 };

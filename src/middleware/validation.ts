@@ -1,46 +1,63 @@
 import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
-import { IUserCreate, LoginCredentials } from '../types';
 
 export const validateRegister = (req: Request, res: Response, next: NextFunction) => {
-  const schema = Joi.object<IUserCreate>({
+  const schema = Joi.object({
     username: Joi.string()
+      .required()
       .min(3)
-      .message('Username debe de contener al menos 3 caracteres.')
       .max(50)
-      .message('Username debe de contener al máximo 50 caracteres.')
-      .required(),
+      .messages({
+        'any.required': 'Username es requerido.',
+        'string.min': 'Username debe de contener al menos 3 caracteres.',
+        'string.max': 'Username debe de contener al máximo 50 caracteres.',
+        'string.empty': 'Username no puede ser vacío.'
+      }),
     password: Joi.string()
+      .required()
       .min(6)
-      .message('Username debe de contener al menos 6 caracteres.')
-      .required(),
+      .messages({
+        'any.required': 'password es requerido.',
+        'string.min': 'password debe de contener al menos 6 caracteres.',
+        'string.empty': 'password no puede ser vacío.'
+      }),
     email: Joi.string().email().optional(),
   });
 
   const { error } = schema.validate(req.body);
   if (error)
-    res.status(400).json({
+    return res.status(400).json({
       error: 'VALIDATION_ERROR',
       message: error?.details[0]?.message
     });
 
-  next();
+  return next();
 };
 
 export const validateLogin = (req: Request, res: Response, next: NextFunction) => {
-  const schema = Joi.object<LoginCredentials>({
-    username: Joi.string().required(),
-    password: Joi.string().required(),
+  const schema = Joi.object({
+    username: Joi.string()
+      .required()
+      .messages({
+        'any.required': 'username es requerido.',
+        'string.empty': 'username no puede ser vacío.'
+      }),
+    password: Joi.string()
+      .required()
+      .messages({
+        'any.required': 'password es requerido.',
+        'string.empty': 'password no puede ser vacío.'
+      }),
   });
 
   const { error } = schema.validate(req.body);
   if (error)
-    res.status(400).json({
+    return res.status(400).json({
       error: 'VALIDATION_ERROR',
       message: error?.details[0]?.message
     });
 
-  next();
+  return next();
 };
 
 export const validateGeoPoint = (req: Request, res: Response, next: NextFunction) => {
@@ -54,12 +71,12 @@ export const validateGeoPoint = (req: Request, res: Response, next: NextFunction
 
   const { error } = schema.validate(req.body);
   if (error)
-    res.status(400).json({
+    return res.status(400).json({
       error: 'VALIDATION_ERROR',
       message: error?.details[0]?.message
     });
 
-  next();
+  return next();
 };
 
 export const validateProximityFilter = (req: Request, res: Response, next: NextFunction) => {
@@ -72,10 +89,10 @@ export const validateProximityFilter = (req: Request, res: Response, next: NextF
 
   const { error } = schema.validate(req.query);
   if (error)
-    res.status(400).json({
+    return res.status(400).json({
       error: 'VALIDATION_ERROR',
       message: error?.details[0]?.message
     });
 
-  next();
+  return next();
 };
