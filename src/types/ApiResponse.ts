@@ -14,7 +14,7 @@ export const createSuccessResponse = <T>(data: T): ApiResponse<T> => ({
 
 export const createErrorResponse = (error: string, message?: string): ApiResponse<null> => ({
     success: false,
-    error,
+    error: error || undefined,
     message: message || undefined,
     timestamp: new Date().toISOString()
 });

@@ -43,8 +43,8 @@ app.get('/', function (req, res) {
 });
 
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    res.status(500).json({
-        error: 'ERROR',
+    res.status(err.status || 500).json({
+        error: err.codeError || 'ERROR',
         message: err.message
     });
 });

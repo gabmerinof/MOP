@@ -8,7 +8,7 @@ export const responseFormatter = (req: express.Request, res: express.Response, n
     res.json = (body?: any) => {
         let response = body;
         if (body && typeof body === 'object' && !body?.success)
-            response = body?.error ? createErrorResponse(body.code, body.message) : createSuccessResponse(body);
+            response = body?.error ? createErrorResponse(body.error, body.message) : createSuccessResponse(body);
 
         return originalJson.call(res, response);
     };

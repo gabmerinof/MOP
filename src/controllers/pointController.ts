@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 import { GeoPointService } from '../services/GeoPointService';
 import { TYPES } from '../types/types';
+import { AppError } from '../utils/AppError';
 
 @injectable()
 export class PointsController {
@@ -15,10 +16,7 @@ export class PointsController {
 
             res.status(201).json({ ...point });
         } catch (error: any) {
-            res.status(400).json({
-                error: 'GEOPOINT_ERROR',
-                message: error.message
-            });
+            throw new AppError('GEOPOINT_ERROR', error.message, 400);
         }
     };
 
@@ -37,10 +35,7 @@ export class PointsController {
                 count: points?.length
             });
         } catch (error: any) {
-            res.status(400).json({
-                error: 'GEOPOINT_ERROR',
-                message: error.message
-            });
+            throw new AppError('GEOPOINT_ERROR', error.message, 400);
         }
     };
 
@@ -59,10 +54,7 @@ export class PointsController {
 
             res.status(200).json({ ...point });
         } catch (error: any) {
-            res.status(400).json({
-                error: 'GEOPOINT_ERROR',
-                message: error.message
-            });
+            throw new AppError('GEOPOINT_ERROR', error.message, 400);
         }
     };
 
@@ -82,10 +74,7 @@ export class PointsController {
             res.status(200).json({ ...point });
         } catch (error: any) {
             const errorNo = error.message.includes('permisos') ? 403 : 400;
-            res.status(errorNo).json({
-                error: 'GEOPOINT_ERROR',
-                message: error.message
-            });
+            throw new AppError('GEOPOINT_ERROR', error.message, errorNo);
         }
     };
 
@@ -105,10 +94,7 @@ export class PointsController {
             res.status(200).json({ "message": "Punto eliminado con éxito" });
         } catch (error: any) {
             const errorNo = error.message.includes('permisos') ? 403 : 400;
-            res.status(errorNo).json({
-                error: 'GEOPOINT_ERROR',
-                message: error.message
-            });
+            throw new AppError('GEOPOINT_ERROR', error.message, errorNo);
         }
     };
 
@@ -122,10 +108,7 @@ export class PointsController {
                 count: points?.length
             });
         } catch (error: any) {
-            res.status(400).json({
-                error: 'GEOPOINT_ERROR',
-                message: error.message
-            });
+            throw new AppError('GEOPOINT_ERROR', error.message, 400);
         }
     };
 }

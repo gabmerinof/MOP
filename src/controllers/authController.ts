@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 import { AuthService } from '../services/AuthService';
 import { TYPES } from '../types/types';
+import { AppError } from '../utils/AppError';
 
 @injectable()
 export class AuthController {
@@ -18,10 +19,7 @@ export class AuthController {
                 count: users?.length
             });
         } catch (error: any) {
-            res.status(400).json({
-                error: 'AUTH_ERROR',
-                message: error.message
-            });
+            throw new AppError('AUTH_ERROR', error.message, 400);
         }
     };
 
@@ -33,10 +31,7 @@ export class AuthController {
                 ...user
             });
         } catch (error: any) {
-            res.status(400).json({
-                error: 'REGISTER_ERROR',
-                message: error.message
-            });
+            throw new AppError('REGISTER_ERROR', error.message, 400);
         }
     };
 
@@ -48,10 +43,7 @@ export class AuthController {
                 ...result
             });
         } catch (error: any) {
-            res.status(401).json({
-                error: 'AUTH_ERROR',
-                message: error.message
-            });
+            throw new AppError('AUTH_ERROR', error.message, 401);
         }
     };
 }
