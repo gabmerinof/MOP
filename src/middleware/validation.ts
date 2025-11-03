@@ -1,3 +1,4 @@
+import { AppError } from '../utils/AppError';
 import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
 
@@ -26,12 +27,9 @@ export const validateRegister = (req: Request, res: Response, next: NextFunction
 
   const { error } = schema.validate(req.body);
   if (error)
-    return res.status(400).json({
-      error: 'VALIDATION_ERROR',
-      message: error?.details[0]?.message
-    });
+    throw new AppError('VALIDATION_ERROR', error?.details[0]?.message ?? '', 400);
 
-  return next();
+  next();
 };
 
 export const validateLogin = (req: Request, res: Response, next: NextFunction) => {
@@ -52,12 +50,9 @@ export const validateLogin = (req: Request, res: Response, next: NextFunction) =
 
   const { error } = schema.validate(req.body);
   if (error)
-    return res.status(400).json({
-      error: 'VALIDATION_ERROR',
-      message: error?.details[0]?.message
-    });
+    throw new AppError('VALIDATION_ERROR', error?.details[0]?.message ?? '', 400);
 
-  return next();
+  next();
 };
 
 export const validateGeoPoint = (req: Request, res: Response, next: NextFunction) => {
@@ -71,12 +66,9 @@ export const validateGeoPoint = (req: Request, res: Response, next: NextFunction
 
   const { error } = schema.validate(req.body);
   if (error)
-    return res.status(400).json({
-      error: 'VALIDATION_ERROR',
-      message: error?.details[0]?.message
-    });
+    throw new AppError('VALIDATION_ERROR', error?.details[0]?.message ?? '', 400);
 
-  return next();
+  next();
 };
 
 export const validateProximityFilter = (req: Request, res: Response, next: NextFunction) => {
@@ -89,10 +81,7 @@ export const validateProximityFilter = (req: Request, res: Response, next: NextF
 
   const { error } = schema.validate(req.query);
   if (error)
-    return res.status(400).json({
-      error: 'VALIDATION_ERROR',
-      message: error?.details[0]?.message
-    });
+    throw new AppError('VALIDATION_ERROR', error?.details[0]?.message ?? '', 400);
 
-  return next();
+  next();
 };
