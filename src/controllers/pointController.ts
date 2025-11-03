@@ -43,14 +43,7 @@ export class PointsController {
         try {
             const geoPointId = req.params['geoPointId']!;
             const point = await this.geoPointService.getPointById(geoPointId);
-            if (!point) {
-                res.status(400).json({
-                    error: 'GEOPOINT_ERROR',
-                    message: 'Punto Georeferencial no encontrado'
-                });
-
-                return;
-            }
+            if (!point) throw new AppError('GEOPOINT_ERROR', 'Punto Georeferencial no encontrado', 400);
 
             res.status(200).json({ ...point });
         } catch (error: any) {
@@ -62,14 +55,7 @@ export class PointsController {
         try {
             const userid = (req as any).body.userid;
             const point = await this.geoPointService.updatePoint(req.params['geoPointId']!, req.body, userid);
-            if (!point) {
-                res.status(400).json({
-                    error: 'GEOPOINT_ERROR',
-                    message: 'Punto Georeferencial no encontrado'
-                });
-
-                return;
-            }
+            if (!point) throw new AppError('GEOPOINT_ERROR', 'Punto Georeferencial no encontrado', 400);
 
             res.status(200).json({ ...point });
         } catch (error: any) {
@@ -82,14 +68,7 @@ export class PointsController {
         try {
             const userid = (req as any).body.userid;
             const success = await this.geoPointService.deletePoint(req.params['geoPointId']!, userid);
-            if (!success) {
-                res.status(400).json({
-                    error: 'GEOPOINT_ERROR',
-                    message: 'Punto Georeferencial no encontrado'
-                });
-
-                return;
-            }
+            if (!success) throw new AppError('GEOPOINT_ERROR', 'Punto Georeferencial no encontrado', 400);
 
             res.status(200).json({ "message": "Punto eliminado con éxito" });
         } catch (error: any) {
