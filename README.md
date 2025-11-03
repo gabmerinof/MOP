@@ -75,7 +75,6 @@ NODE_ENV=development
       email VARCHAR(100),
       created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP WITH TIME ZONE
-  	updatedAt TIMESTAMP WITH TIME ZONE
   );
   
   -- Tabla de puntos geográficos
@@ -134,7 +133,7 @@ MOP/
 │   ├── .env
 │   ├── environment.d.ts
 │   ├── package.json
-│   └── tsconfig.json
+└── └── tsconfig.json
 ```
 
 ## Ejemplos consumo EndPoints (Postman)
