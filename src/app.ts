@@ -1,5 +1,4 @@
 import compression from 'compression';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import nocache from 'nocache';
@@ -17,7 +16,6 @@ const app = express();
 app.use(nocache());
 app.use(compression());
 app.use(corsMiddleware);
-app.use(cors());
 app.use(express.json({ limit: '1gb' }));
 app.use(express.urlencoded({
     extended: true,

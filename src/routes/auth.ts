@@ -5,7 +5,6 @@ import { validateRegister, validateLogin } from '../middleware/validation';
 const router = Router();
 const authController = new AuthController();
 
-// router.get('/', authController.getAll);
 router.post('/register', validateRegister, authController.register);
 router.post('/login', validateLogin, authController.login);
 
