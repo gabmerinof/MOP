@@ -27,8 +27,8 @@ export const validateLogin = (req: Request, res: Response, next: NextFunction) =
     username: Joi.string().required(),
     password: Joi.string().required(),
   }).messages({
-    'any.required': 'username es requerido.',
-    'string.empty': 'username no puede ser vacío.'
+    'any.required': '{{#label}} es requerido.',
+    'string.empty': '{{#label}} no puede ser vacío.'
   });
 
   const { error } = schema.validate(req.body);
