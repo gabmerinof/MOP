@@ -4,25 +4,15 @@ import Joi from 'joi';
 
 export const validateRegister = (req: Request, res: Response, next: NextFunction) => {
   const schema = Joi.object({
-    username: Joi.string()
-      .required()
-      .min(3)
-      .max(50)
-      .messages({
-        'any.required': 'Username es requerido.',
-        'string.min': 'Username debe de contener al menos 3 caracteres.',
-        'string.max': 'Username debe de contener al máximo 50 caracteres.',
-        'string.empty': 'Username no puede ser vacío.'
-      }),
-    password: Joi.string()
-      .required()
-      .min(6)
-      .messages({
-        'any.required': 'password es requerido.',
-        'string.min': 'password debe de contener al menos 6 caracteres.',
-        'string.empty': 'password no puede ser vacío.'
-      }),
+    username: Joi.string().required().min(3).max(50),
+    password: Joi.string().required().min(6),
     email: Joi.string().email().optional(),
+  }).messages({
+    'any.required': '{{#label}} es requerido.',
+    'string.min': '{{#label}} debe de contener al menos {{#limit}} caracteres.',
+    'string.max': '{{#label}} debe de contener máximo {{#limit}} caracteres.',
+    'string.empty': '{{#label}} no puede ser vacío.',
+    'string.email': '{{#label}} debe ser un correo válido',
   });
 
   const { error } = schema.validate(req.body);
@@ -34,18 +24,11 @@ export const validateRegister = (req: Request, res: Response, next: NextFunction
 
 export const validateLogin = (req: Request, res: Response, next: NextFunction) => {
   const schema = Joi.object({
-    username: Joi.string()
-      .required()
-      .messages({
-        'any.required': 'username es requerido.',
-        'string.empty': 'username no puede ser vacío.'
-      }),
-    password: Joi.string()
-      .required()
-      .messages({
-        'any.required': 'password es requerido.',
-        'string.empty': 'password no puede ser vacío.'
-      }),
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+  }).messages({
+    'any.required': 'username es requerido.',
+    'string.empty': 'username no puede ser vacío.'
   });
 
   const { error } = schema.validate(req.body);
