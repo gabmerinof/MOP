@@ -1,10 +1,11 @@
-import { IUser, IUserCreate, UserResponse } from '../types';
-import { User } from '../models/User';
 import { injectable } from 'inversify';
+import { User } from '../models/User';
+import { IUser, IUserCreate, UserResponse } from '../types';
 import { IUserRepository } from './interfaces';
 
 @injectable()
 export class UserRepository implements IUserRepository {
+
     async create(userData: IUserCreate): Promise<UserResponse> {
         const user = await User.create(userData);
         return {

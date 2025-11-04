@@ -1,27 +1,14 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 import { AuthService } from '../services/AuthService';
-import { TYPES } from '../types/types';
+import { IAuthService } from '../services/interfaces';
 import { AppError } from '../utils/AppError';
 
 @injectable()
 export class AuthController {
 
-    constructor(@inject(TYPES.AuthService) private readonly authService: AuthService) {
+    constructor(@inject(AuthService) private readonly authService: IAuthService) {
     }
-
-    getAll = async (req: Request, res: Response): Promise<void> => {
-        try {
-            const users = await this.authService.getAll();
-
-            res.status(200).json({
-                users: users,
-                count: users?.length
-            });
-        } catch (error: any) {
-            throw new AppError('AUTH_ERROR', error.message, 400);
-        }
-    };
 
     register = async (req: Request, res: Response): Promise<void> => {
         try {

@@ -8,7 +8,7 @@ export interface IAuthService {
 }
 
 export interface IGeoPointService {
-    createPoint(pointData: IGeoPointCreate, userId: string): Promise<IGeoPoint>;
+    createPoint(pointData: IGeoPointCreate): Promise<IGeoPoint>;
     getPointById(id: string): Promise<IGeoPoint | null>;
     getAllPoints(filters?: ProximityFilter): Promise<IGeoPoint[]>;
     updatePoint(id: string, pointData: IGeoPointUpdate, userId: string): Promise<IGeoPoint | null>;

@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 import { GeoPointService } from '../services/GeoPointService';
-import { TYPES } from '../types/types';
+import { IGeoPointService } from '../services/interfaces';
 import { AppError } from '../utils/AppError';
 
 @injectable()
 export class PointsController {
 
-    constructor(@inject(TYPES.GeoPointService) private readonly geoPointService: GeoPointService) {
+    constructor(@inject(GeoPointService) private readonly geoPointService: IGeoPointService) {
     }
 
     createPoint = async (req: Request, res: Response): Promise<void> => {

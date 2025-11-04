@@ -3,10 +3,9 @@ import { PointsController } from '../controllers/pointController';
 import { container } from "../inversify.config";
 import { auth } from '../middleware/auth';
 import { validateGeoPoint, validateProximityFilter } from '../middleware/validation';
-import { TYPES } from '../types/types';
 
 const router = Router();
-const pointsController = container.get<PointsController>(TYPES.PointController);
+const pointsController = container.get(PointsController, { autobind: true });
 
 router.get('/', auth, validateProximityFilter, pointsController.getPoints);
 router.get('/:geoPointId', auth, pointsController.getPointById);

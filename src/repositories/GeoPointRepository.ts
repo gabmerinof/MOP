@@ -1,13 +1,14 @@
-import { IGeoPoint, IGeoPointCreate, IGeoPointUpdate, ProximityFilter } from '../types';
-import { User } from '../models/User';
-import { GeoPoint } from '../models/GeoPoint';
+import { injectable } from 'inversify';
 import { QueryTypes } from 'sequelize';
 import sequelize from '../config/database';
-import { injectable } from 'inversify';
+import { GeoPoint } from '../models/GeoPoint';
+import { User } from '../models/User';
+import { IGeoPoint, IGeoPointCreate, IGeoPointUpdate, ProximityFilter } from '../types';
 import { IGeoPointRepository } from './interfaces';
 
 @injectable()
 export class GeoPointRepository implements IGeoPointRepository {
+
     async create(pointData: IGeoPointCreate): Promise<IGeoPoint> {
         pointData.geom = this.getGeometryPoint(pointData.longitude, pointData.latitude);
         const point = await GeoPoint.create({

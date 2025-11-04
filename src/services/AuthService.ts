@@ -1,14 +1,14 @@
-import * as jwt from 'jsonwebtoken';
-import { AuthResponse, IUser, IUserCreate, LoginCredentials } from '../types';
 import { inject, injectable } from 'inversify';
-import { TYPES } from '../types/types';
+import * as jwt from 'jsonwebtoken';
 import { IUserRepository } from '../repositories/interfaces';
+import { UserRepository } from '../repositories/UserRepository';
+import { AuthResponse, IUser, IUserCreate, LoginCredentials } from '../types';
 import { IAuthService } from './interfaces';
 
 @injectable()
 export class AuthService implements IAuthService {
 
-    constructor(@inject(TYPES.UserRepository) private readonly userRepository: IUserRepository) {
+    constructor(@inject(UserRepository) private readonly userRepository: IUserRepository) {
 
     }
 
